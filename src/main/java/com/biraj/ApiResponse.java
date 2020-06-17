@@ -1,11 +1,12 @@
 package com.biraj;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class ApiResponse implements Comparable {
 
+    // 5. Need to add attributes here.
     private String id;
+    private String page;
 
     @Override
     public boolean equals(Object o) {
@@ -21,7 +22,6 @@ public class ApiResponse implements Comparable {
         return Objects.hash(id, page);
     }
 
-    private String page;
 
     public String getId() {
         return id;

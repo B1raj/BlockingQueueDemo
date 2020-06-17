@@ -5,6 +5,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class ProducerConsumerService {
 
+    //4. Run this main method to test your code.
     public static void main(String[] args) {
         //Creating BlockingQueue of size 10
         BlockingQueue<ResponseMessage> queue = new ArrayBlockingQueue<>(10);

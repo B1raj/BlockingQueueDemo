@@ -13,9 +13,11 @@ public class Producer implements Runnable {
     }
     @Override
     public void run() {
-        //produce ResponseMessages
+        // 1. we need to run this loop for the number of recoreds in the file.
         for(int i=0; i<100; i++){
+            // 2. make rest api call here for file 1 and deserealize the json to correct pojo
             ApiResponse response1= new ApiResponse();
+            // 3. make rest api call here for file 2 and deserealize the json to correct pojo
             ApiResponse response2= new ApiResponse();
             ResponseMessage msg = new ResponseMessage(response1,response2);
             try {
@@ -24,7 +26,6 @@ public class Producer implements Runnable {
                 System.err.println("Error occurred in producer");
                 e.printStackTrace();
             }
-
         }
         //stop signal
         ResponseMessage stopMessage = new ResponseMessage(true);
