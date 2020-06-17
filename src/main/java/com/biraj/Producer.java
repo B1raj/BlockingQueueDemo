@@ -20,13 +20,13 @@ public class Producer implements Runnable {
             ResponseMessage msg = new ResponseMessage(response1,response2);
             try {
                 queue.put(msg);
-              /*  System.out.println("Produced "+msg.getMsg());*/
             } catch (InterruptedException e) {
                 System.err.println("Error occurred in producer");
                 e.printStackTrace();
             }
 
         }
+        //stop signal
         ResponseMessage stopMessage = new ResponseMessage(true);
         try {
             queue.put(stopMessage);

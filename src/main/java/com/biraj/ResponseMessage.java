@@ -2,7 +2,7 @@ package com.biraj;
 
 import java.util.Comparator;
 
-public class ResponseMessage  implements Comparator {
+public class ResponseMessage {
     private String request1;
     private String request2;
     private ApiResponse response1;
@@ -49,14 +49,5 @@ public class ResponseMessage  implements Comparator {
     }
 
 
-    @Override
-    public int compare(Object o1, Object o2) {
 
-        ApiResponse s1=(ApiResponse)o1;
-        ApiResponse s2=(ApiResponse)o2;
-        if((s1.getId()==s2.getId())&& s1.getPage() == s2.getPage())
-            return 0;
-        else
-            return -1;
-    }
 }

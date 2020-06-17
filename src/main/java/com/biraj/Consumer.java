@@ -1,8 +1,6 @@
 package com.biraj;
 
 
-
-import java.util.Objects;
 import java.util.concurrent.BlockingQueue;
 
 
@@ -18,9 +16,6 @@ public class Consumer implements Runnable{
     public void run() {
         try{
             ResponseMessage element = null;
-            ApiResponse response1 = null;
-            ApiResponse response2 = null;
-
             //consuming ResponseMessages until stop ResponseMessage is received
             while(!(element = queue.take()).getStopSignal()){
                 compareResponse(element);
@@ -33,20 +28,17 @@ public class Consumer implements Runnable{
         }
     }
 
-    private boolean compareResponse(ResponseMessage element) {
+    private void compareResponse(ResponseMessage element) {
 
         ApiResponse response1 = element.getResponse1();
         ApiResponse response2 = element.getResponse2();
 
-        if(Objects.equals(response1,response2)){
+        //may need tweaking ... will see later
+        if(response1.equals(response2)){
            print(element, "equals");
         }else{
             print(element,"not equals");
         }
-
-        return false;
-
-
     }
 
     private void print(ResponseMessage element, String decider) {
