@@ -1,6 +1,7 @@
 package com.biraj;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -14,7 +15,7 @@ public class PageResponeBeans {
 	private String total;
 	private String total_pages;
 
-	private DataBeans data = new DataBeans();
+	List<DataBeans> data = new ArrayList<DataBeans>();
 	private AdBeans ad = new AdBeans();
 
 /*	@Override
@@ -74,11 +75,11 @@ public class PageResponeBeans {
 		this.total_pages = total_pages;
 	}
 
-	public DataBeans getData() {
+	public List<DataBeans> getData() {
 		return data;
 	}
 
-	public void setData(DataBeans data) {
+	public void setData(List<DataBeans> data) {
 		this.data = data;
 	}
 
