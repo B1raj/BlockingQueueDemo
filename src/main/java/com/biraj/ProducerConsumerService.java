@@ -3,6 +3,8 @@ package com.biraj;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -10,16 +12,19 @@ public class ProducerConsumerService {
 
 	static final int MAXTHREADS = 8;
 	private static ComparisionResult result = new ComparisionResult();
+
 	// 4. Run this main method to test your code.
 	public static void main(String[] args) throws IOException {
-		/*
-		 * //Creating BlockingQueue of size 10 BlockingQueue<ResponseMessage> queue =
-		 * new ArrayBlockingQueue<>(10); Producer producer = new Producer(queue);
-		 * Consumer consumer = new Consumer(queue); //starting producer to produce
-		 * messages in queue new Thread(producer).start(); //starting consumer to
-		 * consume messages from queue new Thread(consumer).start();
-		 * System.out.println("Producer and Consumer has been started");
-		 */
+
+		// Creating BlockingQueue of size 10
+		BlockingQueue<ResponseMessage> queue = new ArrayBlockingQueue<>(10);
+		Producer producer = new Producer(queue);
+		Consumer consumer = new Consumer(queue); // starting producer to producemessages in queue
+		new Thread(producer).start(); // starting consumer to
+		// consume messages from queue
+		new Thread(consumer).start();
+		System.out.println("Producer and Consumer has been started");
+
 		long startTime = System.nanoTime();
 		String basePath = System.getProperty("user.dir");
 		String seperator = System.getProperty("file.separator");
