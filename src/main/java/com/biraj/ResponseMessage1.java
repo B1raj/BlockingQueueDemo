@@ -5,18 +5,40 @@ public class ResponseMessage1 {
 	private String request2;
 	private ResponseBeans response1;
 	private ResponseBeans response2;
-	private boolean stopSignal;
+	private PageResponeBeans pageResponse1;
+	private PageResponeBeans pageResponse2;
 
-	public ResponseMessage1() {
+	public PageResponeBeans getPageResponse1() {
+		return pageResponse1;
 	}
 
+	public ResponseMessage1(ResponseBeans response1, ResponseBeans response2, PageResponeBeans pageResponse1,
+			PageResponeBeans pageResponse2) {
+		this.response1 = response1;
+		this.response2 = response2;
+		this.pageResponse1 = pageResponse1;
+		this.pageResponse2 = pageResponse2;
+	}
+	
 	public ResponseMessage1(boolean stopSignal) {
 		this.stopSignal = stopSignal;
 	}
 
-	public ResponseMessage1(ResponseBeans response1, ResponseBeans response2) {
-		this.response1 = response1;
-		this.response2 = response2;
+	public void setPageResponse1(PageResponeBeans pageResponse1) {
+		this.pageResponse1 = pageResponse1;
+	}
+
+	public PageResponeBeans getPageResponse2() {
+		return pageResponse2;
+	}
+
+	public void setPageResponse2(PageResponeBeans pageResponse2) {
+		this.pageResponse2 = pageResponse2;
+	}
+
+	private boolean stopSignal;
+
+	public ResponseMessage1() {
 	}
 
 	public String getRequest1() {

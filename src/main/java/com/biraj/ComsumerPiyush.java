@@ -5,22 +5,19 @@ import java.util.concurrent.BlockingQueue;
 public class ComsumerPiyush implements Runnable {
 
 	private BlockingQueue<ResponseMessage1> queue;
-	private BlockingQueue<PageResponseMessage> pageQueue;
 
-	public ComsumerPiyush(BlockingQueue<ResponseMessage1> queue, BlockingQueue<PageResponseMessage> pageQueue) {
+	public ComsumerPiyush(BlockingQueue<ResponseMessage1> queue) {
 		this.queue = queue;
-		this.pageQueue = pageQueue;
 	}
 
 	public void run() {
 		ResponseMessage1 message = null;
-		PageResponseMessage pageMessage = null;
 		try {
-			while (!(message = queue.take()).isStopSignal() || !(pageMessage = pageQueue.take()).isStopSignal()) {
+			while (!(message = queue.take()).isStopSignal()) {
 				try {
-				compareResponse(message, pageMessage);
-				}catch (NullPointerException e) {
-					
+					compareResponse(message);
+				} catch (NullPointerException e) {
+
 				}
 			}
 		} catch (InterruptedException e) {
@@ -29,27 +26,21 @@ public class ComsumerPiyush implements Runnable {
 		}
 	}
 
-	private void compareResponse(ResponseMessage1 message, PageResponseMessage pageMessage) {
+	private void compareResponse(ResponseMessage1 message) {
 		ResponseBeans response1 = message.getResponse1();
 		ResponseBeans response2 = message.getResponse2();
 
-		PageResponeBeans pageResponse1 = pageMessage.getResponse1();
-		PageResponeBeans pageResponse2 = pageMessage.getResponse2();
+		PageResponeBeans pageResponse1 = message.getPageResponse1();
+		PageResponeBeans pageResponse2 = message.getPageResponse2();
 
-		if (response1.equals(response2)) {
+		if (response1.equals(response2) || pageResponse1.equals(pageResponse2)) {
 			print(message, " equals ");
-		} else if (pageResponse1.equals(pageResponse2)) {
-			print(pageMessage, " equals ");
 		} else {
-			print(pageMessage, " not equals ");
+			print(message, " not equals ");
 		}
 	}
 
 	private void print(ResponseMessage1 element, String decider) {
-		System.out.println(element.getRequest1() + decider + element.getRequest2());
-	}
-
-	private void print(PageResponseMessage element, String decider) {
 		System.out.println(element.getRequest1() + decider + element.getRequest2());
 	}
 }
