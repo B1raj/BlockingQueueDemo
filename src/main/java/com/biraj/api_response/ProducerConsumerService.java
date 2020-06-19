@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.function.DoubleToIntFunction;
 
 public class ProducerConsumerService {
 
@@ -13,6 +14,7 @@ public class ProducerConsumerService {
 	// 4. Run this main method to test your code.
 	public static void main(String[] args) throws IOException {
 
+		long startTime = System.currentTimeMillis();
 		// Creating BlockingQueue of size 10
 		BlockingQueue<ResponseMessage> queue = new ArrayBlockingQueue<>(10);
 		ApiProducer producer = new ApiProducer(queue);
@@ -21,6 +23,9 @@ public class ProducerConsumerService {
 		// consume messages from queue
 		new Thread(consumer).start();
 		System.out.println("Producer and Consumer has been started");
+		long stopStart = System.currentTimeMillis();
+
+		System.out.println("main ended" +(stopStart-startTime));
 	}
 
 	public static int getFileLinesCount(String filePath) {

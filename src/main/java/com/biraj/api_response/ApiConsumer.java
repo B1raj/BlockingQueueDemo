@@ -17,6 +17,9 @@ public class ApiConsumer implements Runnable{
 
     @Override
     public void run() {
+
+        long startTime = System.currentTimeMillis();
+        System.out.println("Consumer started" +(startTime));
         try{
             ResponseMessage element = null;
             //consuming ResponseMessages until stop ResponseMessage is received
@@ -25,6 +28,10 @@ public class ApiConsumer implements Runnable{
             }
 
             System.out.println("Stop Consumer");
+
+            long stopStart = System.currentTimeMillis();
+
+            System.out.println("Consumer ended" +(stopStart-startTime));
         }catch(InterruptedException e) {
             System.err.println("Error occurred in consumer");
             e.printStackTrace();

@@ -16,8 +16,6 @@ public class ResponseMessage {
 		this.response = response;
 	}
 
-
-
 	public ResponseMessage(String request1, String request2, String response1, String response2, boolean stopSignal, boolean response) {
 		this.request1 = request1;
 		this.request2 = request2;
