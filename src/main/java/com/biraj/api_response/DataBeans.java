@@ -1,4 +1,4 @@
-package com.biraj;
+package com.biraj.api_response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
